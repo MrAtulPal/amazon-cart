@@ -1,13 +1,13 @@
 const state ={
     productsarray:[],
     cart:[],
-    // saveforlater:[]
+    saveforlater:[]
 }
 
 const getters={
     allproducts:(state)=> state.productsarray,
     getCartItem:(state)=>state.cart,
-    // getlater:(state)=>state.saveforlater
+    getlater:(state)=>state.saveforlater
 }
 
 const actions={
@@ -22,9 +22,12 @@ const actions={
     removeCartItem({ commit }, itemId) {
       commit('removeItem', itemId);
     },
-    // updateLater({commit},item){
-    //     commit()
-    // }
+    updateLater({commit},item){
+        commit('setLaterItem',item)
+    },
+    removeLater({commit},item){
+        commit('setRemoveLater',item)
+    }
 }
 
 const mutations={
@@ -32,6 +35,10 @@ const mutations={
     setCartItem:(state,item)=>(state.cart.push(item)),
     removeItem(state, itemId) {
         state.cart = state.cart.filter(item => item.id !== itemId);
+      },
+    setLaterItem:(state,item)=>(state.saveforlater.push(item))
+    , setRemoveLater(state, itemId) {
+        state.saveforlater = state.saveforlater.filter(item => item !== itemId);
       }
 }
 

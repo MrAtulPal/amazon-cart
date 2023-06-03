@@ -10,11 +10,11 @@
         <p>{{ cartItem.description }}</p>
       </div>
       <button title="Remove From Cart" @click="removeItem(cartItem.id)">Remove From Cart</button>
-      <button @click="saveforlater(cartItem.id)">save for later</button>
+      <button @click="saveforlater(cartItem,cartItem.id)">save for later</button>
     </div>
     <p>{{ getCartItem.length===0?"No product to show":"" }}</p>
   </div>
-  <saveforlater/>
+  <SaveForLater />
   </div>
 </template>
 
@@ -23,7 +23,7 @@ import { mapGetters, mapActions } from "vuex";
 import SaveForLater from './SaveForLater.vue'
 
 export default {
-    components:[SaveForLater],
+    components:{SaveForLater},
   computed: {
     ...mapGetters(["getCartItem"]),
     cartItems: {
@@ -36,12 +36,13 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["updateCartItem", "removeCartItem"]),
+    ...mapActions(["updateCartItem", "removeCartItem","updateLater"]),
     removeItem(itemId) {
       this.removeCartItem(itemId);
     },
-    saveforlater(itemId) {
+    saveforlater(item,itemId) {
       this.removeCartItem(itemId);
+      this.updateLater(item)
     }
   }
 };
