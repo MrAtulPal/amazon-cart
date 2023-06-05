@@ -5,10 +5,7 @@ import CartPage from "../components/CartPage.vue";
 const routes = [
   {
     path: '/',
-    redirect: '/home'
-  },
-  {
-    path: '/',
+    redirect: '/home',
     component: RoutesPage,
     children: [
       { 
