@@ -1,5 +1,5 @@
-import HomePage from './components/HomePage.vue'
-import CartPage from './components/CartPage.vue'
+import HomePage from '../components/HomePage.vue'
+import CartPage from '../components/CartPage.vue'
 
 const routes = [
   { path: '/', component: HomePage },

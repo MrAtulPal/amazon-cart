@@ -47,7 +47,7 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="scss">
 button {
   margin-top: 5vh;
 }

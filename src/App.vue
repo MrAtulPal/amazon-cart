@@ -1,30 +1,20 @@
 <template>
- 
   <div >
-    <div id="nav">
-
-      <router-link to="/">Home</router-link>
-      <router-link to="/cart">Cart</router-link>
-    </div>
-
+    <RoutesPage/>
     <router-view></router-view>
   </div>  
 </template>
 <script>
+import RoutesPage from './components/RoutesPage.vue';
 
-  export default{}
+
+  export default{ components: { RoutesPage } }
 </script>
-<style>
+<style lang="scss">
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-#nav a{
-    text-decoration: none;
-    color: green;
-    padding: 5px;
 }
 
 #nav{
@@ -38,5 +28,10 @@
     z-index: 9999;
     top: 0;
     width: 100%;
+    & a{
+      text-decoration: none;
+    color: green;
+    padding: 5px;
+    }
 }
 </style>
