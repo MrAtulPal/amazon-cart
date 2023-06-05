@@ -8,7 +8,7 @@ const routes = [
     component: RoutesPage,
     children: [
       { 
-        path: '', 
+        path: 'home', 
         component: HomePage },
       {
         path: 'cart',
