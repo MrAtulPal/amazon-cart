@@ -1,4 +1,5 @@
 <template>
+  <div>
   <div id="products">
     <div id="product-card" v-for="item in allproducts" :key="item.id">
       <img :src="item.image" />
@@ -10,7 +11,7 @@
       </div>
       <p id="cart" title="Add To Cart" @click="addToCart(item)">🚛</p>
     </div>
-  </div>
+  </div></div>
 </template>
 
 <script>

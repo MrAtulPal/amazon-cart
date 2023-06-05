@@ -1,9 +1,21 @@
-import HomePage from '../components/HomePage.vue'
-import CartPage from '../components/CartPage.vue'
+import RoutesPage from "../components/RoutesPage.vue"
+import HomePage from "../components/HomePage.vue";
+import CartPage from "../components/CartPage.vue";
 
 const routes = [
-  { path: '/', component: HomePage },
-  { path: '/cart', component: CartPage }
-]
+  {
+    path: '/',
+    component: RoutesPage,
+    children: [
+      { 
+        path: '', 
+        component: HomePage },
+      {
+        path: 'cart',
+        component: CartPage,
+      },
+    ],
+  },
+];
 
-export default routes
+export default routes;

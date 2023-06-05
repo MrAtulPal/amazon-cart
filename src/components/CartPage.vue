@@ -1,29 +1,29 @@
 <template>
-    <div>
-  <div id="products">
-    <div id="product-card" v-for="cartItem in getCartItem" :key="cartItem.id">
-      <img :src="cartItem.image" />
-      <div id="product-info">
-        <h1>{{ cartItem.title }}</h1>
-        <h3>{{ cartItem.category }}</h3>
-        <p>${{ cartItem.price }}</p>
-        <p>{{ cartItem.description }}</p>
+  <div>
+    <div id="products">
+      <div id="product-card" v-for="cartItem in getCartItem" :key="cartItem.id">
+        <img :src="cartItem.image" />
+        <div id="product-info">
+          <h1>{{ cartItem.title }}</h1>
+          <h3>{{ cartItem.category }}</h3>
+          <p>${{ cartItem.price }}</p>
+          <p>{{ cartItem.description }}</p>
+        </div>
+        <button title="Remove From Cart" @click="removeItem(cartItem.id)">Remove From Cart</button>
+        <button @click="saveforlater(cartItem,cartItem.id)">save for later</button>
       </div>
-      <button title="Remove From Cart" @click="removeItem(cartItem.id)">Remove From Cart</button>
-      <button @click="saveforlater(cartItem,cartItem.id)">save for later</button>
+      <p>{{ getCartItem.length===0?"No product to show":"" }}</p>
     </div>
-    <p>{{ getCartItem.length===0?"No product to show":"" }}</p>
-  </div>
-  <SaveForLater />
+    <SaveForLater />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import SaveForLater from './SaveForLater.vue'
+import SaveForLater from "./SaveForLater.vue";
 
 export default {
-    components:{SaveForLater},
+  components: { SaveForLater },
   computed: {
     ...mapGetters(["getCartItem"]),
     cartItems: {
@@ -36,13 +36,13 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["updateCartItem", "removeCartItem","updateLater"]),
+    ...mapActions(["updateCartItem", "removeCartItem", "updateLater"]),
     removeItem(itemId) {
       this.removeCartItem(itemId);
     },
-    saveforlater(item,itemId) {
+    saveforlater(item, itemId) {
       this.removeCartItem(itemId);
-      this.updateLater(item)
+      this.updateLater(item);
     }
   }
 };
