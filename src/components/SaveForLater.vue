@@ -10,7 +10,7 @@
           <p>${{ cartItem.price }}</p>
           <p>{{ cartItem.description }}</p>
         </div>
-      <p id="cart" title="Add To Cart" @click="addToCart(cartItem)">🚛</p>
+      <p id="cart" title="Add To Cart" @click="addToCart(cartItem,cartItem.id)">🚛</p>
       </div>
 
     </div>
@@ -22,12 +22,15 @@ import { mapGetters,mapActions } from "vuex";
 export default {
   computed: mapGetters(["getlater"]),
   methods: {
-        ...mapActions(['updateCartItem','removeLater']),
-        addToCart(cartItem){
-            this.removeLater(cartItem)
+        ...mapActions(['updateCartItem','removeLater','getAllSaveItem']),
+        addToCart(cartItem,itemId){
+            this.removeLater(itemId)
             this.updateCartItem(cartItem)
         }
 
+    },
+    mounted(){
+      this.getAllSaveItem()
     }
 };
 </script>

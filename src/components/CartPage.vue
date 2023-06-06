@@ -13,19 +13,17 @@
         <button @click="saveforlater(cartItem,cartItem.id)">save for later</button>
       </div>
       <p>{{ getCartItem.length===0?"No product to show":"" }}</p>
+      <p> Total-Price : ${{ totalPrice }}</p>
     </div>
-    <SaveForLater />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import SaveForLater from "./SaveForLater.vue";
 
 export default {
-  components: { SaveForLater },
   computed: {
-    ...mapGetters(["getCartItem"]),
+    ...mapGetters(["getCartItem","getTotalPrice"]),
     cartItems: {
       get() {
         return this.getCartItem;
@@ -33,18 +31,25 @@ export default {
       set(value) {
         this.updateCartItem(value);
       }
+    },
+    totalPrice() {
+      return this.getTotalPrice.toFixed(2)
     }
   },
+  mounted(){
+    this.getAllCartItem()
+  },
   methods: {
-    ...mapActions(["updateCartItem", "removeCartItem", "updateLater"]),
+    ...mapActions(["updateCartItem", "removeCartItem", "updateLater","getAllCartItem"]),
     removeItem(itemId) {
       this.removeCartItem(itemId);
     },
     saveforlater(item, itemId) {
       this.removeCartItem(itemId);
       this.updateLater(item);
-    }
-  }
+    },
+    
+  },
 };
 </script>
 <style lang="scss">
